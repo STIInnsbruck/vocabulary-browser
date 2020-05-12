@@ -27,6 +27,10 @@ app.get('/:vocabId', (req, res) => {
     res.sendFile(__dirname + '/public/vocabWelcome.html');
 });
 
+app.get('/vsearch/vsearch.rdf', (req, res) => {
+    //res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/vsearch/vsearch.rdf');
+});
 // on /112
 // click on href with ./Trail
 // goto /112/Trail
