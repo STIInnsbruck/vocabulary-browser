@@ -54,6 +54,16 @@
                     "schema:value": "7"
                 }
             ]
+        },
+        {
+            "@type": "ds:Vocabulary",
+            "schema:url": "https://semantify.it/voc/o59bcWUoq",
+            "schema:name": "SemPOD Ontology",
+            "schema:author": {
+                "@type": "schema:Person",
+                "@id": "https://elias.kaerle.com/",
+                "schema:name": "Elias Kärle"
+            }
         }
     ]
 }]
