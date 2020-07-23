@@ -61,7 +61,6 @@
             "schema:name": "SemPOD Ontology",
             "schema:author": {
                 "@type": "schema:Person",
-                "@id": "https://elias.kaerle.com/",
                 "schema:name": "Juliette Opdenplatz"
             }
         }
