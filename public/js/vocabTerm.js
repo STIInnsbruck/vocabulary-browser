@@ -1,4 +1,4 @@
-$(document).ready(async() => {
+$(document).ready(async () => {
     $("#header").load("/header.html");
     const pathname = window.location.pathname;
     let mySA = new SDOAdapter();
@@ -19,17 +19,17 @@ $(document).ready(async() => {
         termTest = mySA.getProperty(term);
         isproperty = true;
         currentVocab = termTest.getVocabulary();
-    } catch (e) {}
+    } catch (e) { }
     try {
         termTest = mySA.getClass(term);
         isclass = true;
         currentVocab = termTest.getVocabulary();
-    } catch (e) {}
+    } catch (e) { }
     try {
         termTest = mySA.getEnumerationMember(term);
         isEnumerationMember = true;
         currentVocab = termTest.getVocabulary();
-    } catch (e) {}
+    } catch (e) { }
     if (isclass) {
         $('#termClass').show();
         createClassPage(termTest);
@@ -79,15 +79,15 @@ $(document).ready(async() => {
         let DefTableHTML = await makeDefTable(termTest);
         $('#termProperty').append(
             DefTableHTML
-            .replace(/{{rangeCellItemsArray}}/g, rangeCellItemsArray.join('<br>'))
-            .replace(/{{domainCellItemsArray}}/g, domainCellItemsArray.join('<br>'))
-            .replace(/{{propSuperVocab}}/g, propSuperVocab)
-            .replace(/{{superProp}}/g, superProp)
-            .replace(/{{propSuperProp}}/g, propSuperProp)
-            .replace(/{{propSubVocab}}/g, propSubVocab)
-            .replace(/{{propSub}}/g, propSub)
-            .replace(/{{vocabId}}/g, vocabId)
-            .replace(/{{propSubProp}}/g, propSubProp)
+                .replace(/{{rangeCellItemsArray}}/g, rangeCellItemsArray.join('<br>'))
+                .replace(/{{domainCellItemsArray}}/g, domainCellItemsArray.join('<br>'))
+                .replace(/{{propSuperVocab}}/g, propSuperVocab)
+                .replace(/{{superProp}}/g, superProp)
+                .replace(/{{propSuperProp}}/g, propSuperProp)
+                .replace(/{{propSubVocab}}/g, propSubVocab)
+                .replace(/{{propSub}}/g, propSub)
+                .replace(/{{vocabId}}/g, vocabId)
+                .replace(/{{propSubProp}}/g, propSubProp)
         );
     }
 
@@ -203,8 +203,10 @@ $(document).ready(async() => {
             let props = term.getProperties(false);
             // Create tbody for class
             let generatedTbody = makeClassBody(term, superclass, index);
-            // Add all classes in tbody 
-            $('#classes-table').append(generatedTbody);
+            // Add all classes in tbody only if there properties at least 1.
+            if (props.length > 0) {
+                $('#classes-table').append(generatedTbody);
+            }
             props.forEach((prop) => {
                 let generatedHTML = makeProperty(prop);
                 $('#sup-class-props' + index).append(generatedHTML);
@@ -254,13 +256,13 @@ $(document).ready(async() => {
             let crumClass;
             try {
                 crumClass = mySA.getClass(superClass);
-            } catch {}
+            } catch { }
             try {
                 crumClass = mySA.getDataType(superClass);
-            } catch {}
+            } catch { }
             try {
                 crumClass = mySA.getEnumerationMember(superClass);
-            } catch {}
+            } catch { }
             let crumClassIRI = crumClass.getIRI();
             IRIcheck = crumClassIRI.includes("schema.org");
             let newSupClass = superClass.replace('schema:', '');
@@ -269,7 +271,7 @@ $(document).ready(async() => {
             } else {
                 return `<a href="/${vocabId}/${newSupClass}">${newSupClass}</a>`
             }
-        } catch (e) {}
+        } catch (e) { }
         try {
             crumProp = mySA.getProperty(superClass);
             let crumPropIRI = crumProp.getIRI();
@@ -280,7 +282,7 @@ $(document).ready(async() => {
             } else {
                 return `<a href="/${vocabId}/${term}">${term}</a>`
             }
-        } catch (e) {}
+        } catch (e) { }
     }
 
     function makeClassBody(term, superclass, index) {
@@ -330,10 +332,10 @@ $(document).ready(async() => {
         let rangeClassName;
         try {
             rangeClassName = mySA.getClass(range);
-        } catch (e) {}
+        } catch (e) { }
         try {
             rangeClassName = mySA.getDataType(range);
-        } catch (e) {}
+        } catch (e) { }
         let rangeClassIRI = rangeClassName.getIRI();
         let IRIcheck = rangeClassIRI.includes("schema.org")
         let rangeVocab = range.replace('schema:', '');
