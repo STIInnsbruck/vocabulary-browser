@@ -16,7 +16,7 @@ $(document).ready(async() => {
         });
     });
 
-    sdoURL = await mySA.constructSDOVocabularyURL('latest', 'all-layers');
+    sdoURL = await mySA.constructSDOVocabularyURL('latest');
     await mySA.addVocabularies([sdoURL, externalVocabURL]);
     $('#loading').hide();
     let propertiesinVocab;

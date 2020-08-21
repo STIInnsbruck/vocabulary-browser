@@ -8,7 +8,7 @@ $(document).ready(async () => {
     let externalVocabURL = "https://semantify.it/voc/" + vocabId;
     let currentVocab;
 
-    sdoURL = await mySA.constructSDOVocabularyURL('latest', 'all-layers');
+    sdoURL = await mySA.constructSDOVocabularyURL('latest');
     await mySA.addVocabularies([sdoURL, externalVocabURL]);
     $('#loading').hide();
     let termTest;
